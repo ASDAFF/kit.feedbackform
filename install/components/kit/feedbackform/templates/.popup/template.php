@@ -14,7 +14,7 @@ use \Bitrix\Main\Localization\Loc;
 
 Loc::loadLanguageFile(__FILE__);
 
-CUtil::InitJSCore(array('interlabs_feedbackform'));
+CUtil::InitJSCore(array('kit_feedbackform'));
 
 /**
  * $arResult=[
@@ -27,19 +27,19 @@ CUtil::InitJSCore(array('interlabs_feedbackform'));
 ?>
 
 
-<div class="interlabs-feedbackform__container">
-    <button class="js-interlabs-feedbackform__container-show-button">
+<div class="kit-feedbackform__container">
+    <button class="js-kit-feedbackform__container-show-button">
         <?php echo Loc::getMessage("FORM_POPUP_SHOW_BUTTON"); ?>
     </button>
 
 
-    <div class="interlabs-feedbackform__container__dialog modal-mask<?php echo (isset($arResult['validateErrors']) && count($arResult['validateErrors']) > 0) ? '' : ' hidden'; ?>">
+    <div class="kit-feedbackform__container__dialog modal-mask<?php echo (isset($arResult['validateErrors']) && count($arResult['validateErrors']) > 0) ? '' : ' hidden'; ?>">
         <div class="modal-wrapper">
             <div class="modal-container">
 
                 <div class="header">
                     <label><?php echo $arResult['SUBJECT'] ? $arResult['SUBJECT'] : Loc::getMessage("FORM_TITLE"); ?></label>
-                    <span class="js-interlabs-feedbackform__dialog__close">
+                    <span class="js-kit-feedbackform__dialog__close">
                              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
                                   xmlns="http://www.w3.org/2000/svg">
                     <path d="M1 1L17 17" stroke="#8B8989" stroke-width="2" stroke-linecap="round"/>
@@ -50,10 +50,10 @@ CUtil::InitJSCore(array('interlabs_feedbackform'));
 
 
                 <div class="body">
-                    <div class="interlabs-feedbackform__container__errors">
+                    <div class="kit-feedbackform__container__errors">
                         <?php if (isset($arResult['validateErrors']) && count($arResult['validateErrors']) > 0) { ?>
                             <?php foreach ($arResult['validateErrors'] as $error) { ?>
-                                <label class="interlabs-feedbackform__container__errors__item"
+                                <label class="kit-feedbackform__container__errors__item"
                                        data-field="<?php echo isset($error['field']) ? $error['field'] : ''; ?>">
                                     <?php echo $error['message']; ?>
                                 </label>
@@ -73,8 +73,8 @@ CUtil::InitJSCore(array('interlabs_feedbackform'));
                               data-validatefields='<?php echo json_encode($arResult['template']['validate']); ?>'
                               class="">
                             <?php } ?>
-                            <input type="hidden" name="interlabs__feedbackform" value="Y">
-                            <input type="hidden" name="interlabs__feedbackform_FORM_ID" value="<?php echo $arParams['FORM_ID'] ?>">
+                            <input type="hidden" name="kit__feedbackform" value="Y">
+                            <input type="hidden" name="kit__feedbackform_FORM_ID" value="<?php echo $arParams['FORM_ID'] ?>">
                             <?=bitrix_sessid_post()?>
                             <div class="scroll-area">
                                 <?php
@@ -90,7 +90,7 @@ CUtil::InitJSCore(array('interlabs_feedbackform'));
                                                     <input id="<?php echo $idFileField; ?>" type="file" value=""
                                                            name="<?php echo $code; ?>[]" multiple
                                                            onchange="var inp =document.getElementById('<?php echo $idFileField; ?>');var l=[];for (var i = 0; i < inp.files.length; ++i) {l.push(inp.files.item(i).name.match(/[^\/\\]+$/));}var label=document.getElementById('<?php echo $idFileField; ?>-label');label.innerHTML=l.join(', ');if(l.length>0){var arr=label.className.split(' '); if (arr.indexOf('selected') == -1) {label.className += ' ' + 'selected';}}else{label.className += arr.join(' ').replace('selected',''); }">
-                                                    <a onclick="document.getElementById('<?php echo $idFileField; ?>').click();return false;">Îáçîð</a>
+                                                    <a onclick="document.getElementById('<?php echo $idFileField; ?>').click();return false;">ï¿½ï¿½ï¿½ï¿½ï¿½</a>
                                                     <label id="<?php echo $idFileField; ?>-label"><?php echo Loc::getMessage("INPUT_FILE_DEFAULT"); ?></label>
                                                 </label>
 
@@ -106,7 +106,7 @@ CUtil::InitJSCore(array('interlabs_feedbackform'));
                                                            type="file"
                                                            name="<?php echo $code; ?>"
                                                            onchange="var inp =document.getElementById('<?php echo $idFileField; ?>');var l=[];for (var i = 0; i < inp.files.length; ++i) {l.push(inp.files.item(i).name.match(/[^\/\\]+$/));}var label=document.getElementById('<?php echo $idFileField; ?>-label');label.innerHTML=l.join(', ');if(l.length>0){var arr=label.className.split(' '); if (arr.indexOf('selected') == -1) {label.className += ' ' + 'selected';}}else{label.className += arr.join(' ').replace('selected',''); }">
-                                                    <a onclick="document.getElementById('<?php echo $idFileField; ?>').click();return false;">Îáçîð</a>
+                                                    <a onclick="document.getElementById('<?php echo $idFileField; ?>').click();return false;">ï¿½ï¿½ï¿½ï¿½ï¿½</a>
                                                     <label id="<?php echo $idFileField; ?>-label"><?php echo Loc::getMessage("INPUT_FILE_DEFAULT"); ?></label>
                                                 </label>
                                                 <?php
@@ -230,7 +230,7 @@ CUtil::InitJSCore(array('interlabs_feedbackform'));
 
                                         <?php if ($arResult['AGREE_PROCESSING_TEXT']) { ?>
                                             <div id="<?php echo $AGREE_PROCESSING_TEXT_dialog_CSS_ID; ?>"
-                                                 class="interlabs__info-dialog hidden">
+                                                 class="kit__info-dialog hidden">
                                                 <div class="header">
                                                     <label><?php echo Loc::getMessage("AGREE_PROCESSING_DIALOG_TITLE"); ?></label>
                                                     <span class="close-dialog"
@@ -267,11 +267,11 @@ CUtil::InitJSCore(array('interlabs_feedbackform'));
                                 <?php } ?>
                             </div>
                             <div class="form-group  control-buttons">
-                                <button class="modal-default-button js-interlabs-feedbackform__dialog__send-button"
+                                <button class="modal-default-button js-kit-feedbackform__dialog__send-button"
                                         type="submit">
                                     <?php echo Loc::getMessage("FORM_SEND"); ?>
                                 </button>
-                                <a class="modal-default-button js-interlabs-feedbackform__dialog__cancel-button">
+                                <a class="modal-default-button js-kit-feedbackform__dialog__cancel-button">
                                     <?php echo Loc::getMessage("FORM_CLOSE"); ?>
                                 </a>
                             </div>
@@ -288,12 +288,12 @@ CUtil::InitJSCore(array('interlabs_feedbackform'));
     </div>
 
 
-    <div class="interlabs-feedbackform__container-succsess modal-mask <?php echo $arResult['isSaveFeedback'] === false ? ' hidden' : ''; ?>">
+    <div class="kit-feedbackform__container-succsess modal-mask <?php echo $arResult['isSaveFeedback'] === false ? ' hidden' : ''; ?>">
         <div class="modal-wrapper">
             <div class="modal-container">
                 <div class="header">
                     <label><?php echo $arResult['SUBJECT'] ? $arResult['SUBJECT'] : Loc::getMessage("FORM_TITLE"); ?></label>
-                    <span class="js-interlabs-feedbackform__dialog__close">
+                    <span class="js-kit-feedbackform__dialog__close">
                         <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
                              xmlns="http://www.w3.org/2000/svg">
                     <path d="M1 1L17 17" stroke="#8B8989" stroke-width="2" stroke-linecap="round"/>
@@ -307,7 +307,7 @@ CUtil::InitJSCore(array('interlabs_feedbackform'));
                         <label><?php echo Loc::getMessage("FORM_SAVED"); ?></label>
                     </div>
                     <div class="form-group control-buttons">
-                        <button class="interlabs-feedbackform__container-succsess__close">
+                        <button class="kit-feedbackform__container-succsess__close">
                             <?php echo Loc::getMessage("FORM_CLOSE"); ?>
                         </button>
                     </div>

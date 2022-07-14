@@ -13,8 +13,8 @@ $arComponentDescription = array(
     "NAME" => GetMessage("COMPONENT_NAME"),
     "DESCRIPTION" => GetMessage("COMPONENT_DESCRIPTION"),
     "PATH" => array(
-        "ID" => "Interlabs",
+        "ID" => "Kit",
         "SORT" => 2000,
-        "NAME" => "Interlabs",
+        "NAME" => "Kit",
     ),
 );

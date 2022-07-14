@@ -2,11 +2,11 @@
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-if (typeof window.interlabs === "undefined") {
-    window.interlabs = {};
+if (typeof window.kit === "undefined") {
+    window.kit = {};
 }
-if (typeof window.interlabs.feedbackform === "undefined") {
-    window.interlabs.feedbackform = {};
+if (typeof window.kit.feedbackform === "undefined") {
+    window.kit.feedbackform = {};
 }
 
 $(document).ready(function () {
@@ -40,26 +40,26 @@ $(document).ready(function () {
         });
     }
 
-    $('.interlabs-feedbackform__container').each(function () {
+    $('.kit-feedbackform__container').each(function () {
         var container = $(this);
-        var dialog = container.find('.interlabs-feedbackform__container__dialog');
+        var dialog = container.find('.kit-feedbackform__container__dialog');
 
         /**
          * open dialog
          */
-        container.find('.js-interlabs-feedbackform__container-show-button').on('click', function () {
-            var container = $(this).parents('.interlabs-feedbackform__container:first');
-            var dialog = container.find('.interlabs-feedbackform__container__dialog');
-            dialog.find('.interlabs-feedbackform__container__errors .interlabs-feedbackform__container__errors__item').remove();
+        container.find('.js-kit-feedbackform__container-show-button').on('click', function () {
+            var container = $(this).parents('.kit-feedbackform__container:first');
+            var dialog = container.find('.kit-feedbackform__container__dialog');
+            dialog.find('.kit-feedbackform__container__errors .kit-feedbackform__container__errors__item').remove();
             dialog.removeClass('hidden');
 
             /**
              * close main dialog
              */
-            dialog.find('.js-interlabs-feedbackform__dialog__close, .js-interlabs-feedbackform__dialog__cancel-button').off('click').on('click', function () {
+            dialog.find('.js-kit-feedbackform__dialog__close, .js-kit-feedbackform__dialog__cancel-button').off('click').on('click', function () {
                 var closeButton = $(this);
-                var container = closeButton.parents('.interlabs-feedbackform__container:first');
-                var dialog = container.find('.interlabs-feedbackform__container__dialog');
+                var container = closeButton.parents('.kit-feedbackform__container:first');
+                var dialog = container.find('.kit-feedbackform__container__dialog');
                 dialog.addClass('hidden');
             });
         });
@@ -67,22 +67,22 @@ $(document).ready(function () {
         /**
          * close info dialog
          */
-        container.find('.js-interlabs-feedbackform__dialog__close').on('click', function () {
-            $(this).parents('.interlabs-feedbackform__container-succsess:first').addClass('hidden');
+        container.find('.js-kit-feedbackform__dialog__close').on('click', function () {
+            $(this).parents('.kit-feedbackform__container-succsess:first').addClass('hidden');
         });
 
         /**
          * Ajax send request
          */
-        dialog.find('.ajax .js-interlabs-feedbackform__dialog__send-button').on('click', function () {
+        dialog.find('.ajax .js-kit-feedbackform__dialog__send-button').on('click', function () {
             var el = $(this);
-            var container = el.parents('.interlabs-feedbackform__container:first');
-            var dialog = container.find('.interlabs-feedbackform__container__dialog');
+            var container = el.parents('.kit-feedbackform__container:first');
+            var dialog = container.find('.kit-feedbackform__container__dialog');
 
             var form = dialog.find('form');
             var formData = new FormData(form.get(0));
 
-            var errorContainer = container.find('.interlabs-feedbackform__container__errors');
+            var errorContainer = container.find('.kit-feedbackform__container__errors');
             if (errorContainer) {
                 errorContainer.html();
             }
@@ -103,7 +103,7 @@ $(document).ready(function () {
                 success: function success(data) {
                     if (data.errors) {
                         // show errors
-                        errorContainer.find('.interlabs-feedbackform__container__errors__item').remove();
+                        errorContainer.find('.kit-feedbackform__container__errors__item').remove();
                         var _iteratorNormalCompletion = true;
                         var _didIteratorError = false;
                         var _iteratorError = undefined;
@@ -113,7 +113,7 @@ $(document).ready(function () {
                                 var error = _step.value;
 
                                 if (errorContainer) {
-                                    errorContainer.append("<label class=\"interlabs-feedbackform__container__errors__item\">" + error.message + "</label>");
+                                    errorContainer.append("<label class=\"kit-feedbackform__container__errors__item\">" + error.message + "</label>");
                                 } else {
                                     console.log(error.message);
                                 }
@@ -135,9 +135,9 @@ $(document).ready(function () {
                     } else {
                         //data.data
                         dialog.addClass('hidden');
-                        container.find('.interlabs-feedbackform__container-succsess').removeClass('hidden');
-                        container.find('.interlabs-feedbackform__container-succsess .interlabs-feedbackform__container-succsess__close').on('click', function () {
-                            container.find('.interlabs-feedbackform__container-succsess').addClass('hidden');
+                        container.find('.kit-feedbackform__container-succsess').removeClass('hidden');
+                        container.find('.kit-feedbackform__container-succsess .kit-feedbackform__container-succsess__close').on('click', function () {
+                            container.find('.kit-feedbackform__container-succsess').addClass('hidden');
                         });
                         dialog.find('input[name="AGREE_PROCESSING"]').prop('checked', false);
                         dialog.find('input[type="file"]').val('');

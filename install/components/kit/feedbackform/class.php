@@ -26,7 +26,7 @@ use Bitrix\Main\Localization\Loc;
   require_once ("/bitrix/modules/iblock/lib/property.php");
 }*/
 if (!class_exists('PropertyEnumerationTable')) {
-  require_once $_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/iblock/lib/propertyenumeration.php";
+    require_once $_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/iblock/lib/propertyenumeration.php";
 }
 
 
@@ -89,7 +89,7 @@ class Feedbackform extends CBitrixComponent
             $this->arResult['form']['PHONE'] = '';
             $this->arResult['form']['EMAIL'] = $USER->GetEmail();
 
-            $rsUser = CUser::GetByID($USER->GetID()); //$USER->GetID() - получаем ID авторизованного пользователя  и сразу же - его поля
+            $rsUser = CUser::GetByID($USER->GetID()); //$USER->GetID() - РїРѕР»СѓС‡Р°РµРј ID Р°РІС‚РѕСЂРёР·РѕРІР°РЅРЅРѕРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ  Рё СЃСЂР°Р·Сѓ Р¶Рµ - РµРіРѕ РїРѕР»СЏ
             $arUser = $rsUser->Fetch();
             $this->arResult['form']["PHONE"] = $arUser['PERSONAL_PHONE'];
         } else {
@@ -111,7 +111,7 @@ class Feedbackform extends CBitrixComponent
         $this->arResult['validateErrors'] = [];
         $this->arResult['success'] = null;
 
-        $module_id = 'interlabs.feedbackform';
+        $module_id = 'kit.feedbackform';
 
         global $USER;
         global $APPLICATION;
@@ -134,7 +134,7 @@ class Feedbackform extends CBitrixComponent
 
 
 
-            if ($request->isPost() && $request->get('interlabs__feedbackform') === 'Y' && $request->get('interlabs__feedbackform_FORM_ID') === $this->arParams['FORM_ID']) {// save data
+            if ($request->isPost() && $request->get('kit__feedbackform') === 'Y' && $request->get('kit__feedbackform_FORM_ID') === $this->arParams['FORM_ID']) {// save data
 
                 $dataIBlock = [];
                 $dataSend = [
@@ -149,13 +149,13 @@ class Feedbackform extends CBitrixComponent
                     strtolower('captcha_sid'),
                     strtolower('captcha_word'),
                     strtolower('AGREE_PROCESSING'),
-                    strtolower('interlabs__feedbackform'),
+                    strtolower('kit__feedbackform'),
                     strtolower('AJAX_CALL'),
                     strtolower('bitrix_include_areas'),
                     strtolower('clear_cache'),
                     strtolower('sessid'),
                     strtolower('bxajaxid'),
-                    strtolower('interlabs__feedbackform_FORM_ID'),
+                    strtolower('kit__feedbackform_FORM_ID'),
                 ];
 
                 foreach ($data as $field => $value) {
@@ -357,7 +357,7 @@ class Feedbackform extends CBitrixComponent
             }
 
 
-            if (isset($data['AJAX_CALL']) && $data['AJAX_CALL'] === 'Y' && $request->get('interlabs__feedbackform') === 'Y' && $request->get('interlabs__feedbackform_FORM_ID') === $this->arParams['FORM_ID']) {// json response
+            if (isset($data['AJAX_CALL']) && $data['AJAX_CALL'] === 'Y' && $request->get('kit__feedbackform') === 'Y' && $request->get('kit__feedbackform_FORM_ID') === $this->arParams['FORM_ID']) {// json response
                 $result = [
                     /**
                      * @var mixwd
@@ -460,10 +460,10 @@ class Feedbackform extends CBitrixComponent
                 "C_FIELDS" => array(
                     "EMAIL_FROM" => $this->getEmail($module_id, 'EMAIL_FROM'),
                     "EMAIL_TO" => $this->getEmail($module_id, 'EMAIL_TO'),
-                    "SUBJECT" => $this->arParams['SUBJECT'] ? $this->arParams['SUBJECT'] : Option::get($module_id, 'subject', 'Interlabs - form'),
+                    "SUBJECT" => $this->arParams['SUBJECT'] ? $this->arParams['SUBJECT'] : Option::get($module_id, 'subject', 'Kit - form'),
                 ),
                 "FILE" => $filesIds,
-                "MESSAGE_ID" => $MESSAGE_ID, //	Идентификатор почтового шаблона по которому будет отправлено письмо.
+                "MESSAGE_ID" => $MESSAGE_ID, //	РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РїРѕС‡С‚РѕРІРѕРіРѕ С€Р°Р±Р»РѕРЅР° РїРѕ РєРѕС‚РѕСЂРѕРјСѓ Р±СѓРґРµС‚ РѕС‚РїСЂР°РІР»РµРЅРѕ РїРёСЃСЊРјРѕ.
             ];
 
             foreach ($dataSend as $field => $value) {
@@ -733,19 +733,19 @@ class Feedbackform extends CBitrixComponent
                 }
                 if (isset($_fields[$f])) {
                     switch ($_property[$f]['PROPERTY_TYPE']) {
-                        case 'S':// - строка,
+                        case 'S':// - СЃС‚СЂРѕРєР°,
                             $value = strval($value);
                             break;
-                        case 'N':// - число,
+                        case 'N':// - С‡РёСЃР»Рѕ,
                             $value = floatval($value);
                             break;
-                        case 'F':// - файл,
+                        case 'F':// - С„Р°Р№Р»,
                             //its not possible, because $dataIBlock - is a POST array, its file id
                             //throw new Exception("{$f} is a file in IBLOCK {$IBLOCK_ID}");
                             //or intval -> get FileArray by id
                             $value = ["VALUE" => CFile::MakeFileArray(intval($value))];
                             break;
-                        case 'L':// - список,
+                        case 'L':// - СЃРїРёСЃРѕРє,
                             if (!is_array($value)) {
                                 $value = [$value];
                             }
@@ -753,7 +753,7 @@ class Feedbackform extends CBitrixComponent
                             foreach ($value as $v) {
                                 $VALUES[$v] = [
                                     'VALUE' => array(
-                                        'TYPE' => 'HTML', // или html
+                                        'TYPE' => 'HTML', // РёР»Рё html
                                         'TEXT' => $v,
                                     ),
                                     "DESCRIPTION" => $v
@@ -761,22 +761,22 @@ class Feedbackform extends CBitrixComponent
                             }
                             $value = $VALUES;
                             break;
-                        case 'E':// - привязка к элементам,
-                        case 'G':// - привязка к группам.
+                        case 'E':// - РїСЂРёРІСЏР·РєР° Рє СЌР»РµРјРµРЅС‚Р°Рј,
+                        case 'G':// - РїСЂРёРІСЏР·РєР° Рє РіСЂСѓРїРїР°Рј.
                         default:
                             //throw new Exception('Not Emplement');
                     }
                 } elseif (isset($_property[$f])) {
 
                     switch ($_property[$f]['PROPERTY_TYPE']) {
-                        case 'S':// - строка,
+                        case 'S':// - СЃС‚СЂРѕРєР°,
                             if ($_property[$f]["MULTIPLE"] == 'N') {
                                 $value = strval($value);
                             } else {
                                 $value = array_map(function ($v) {
                                     return [
                                         'VALUE' => array(
-                                            'TYPE' => 'S:HTML', // или html
+                                            'TYPE' => 'S:HTML', // РёР»Рё html
                                             'TEXT' => $v,
                                         ),
                                         "DESCRIPTION" => $v
@@ -785,7 +785,7 @@ class Feedbackform extends CBitrixComponent
                             }
 
                             break;
-                        case 'N':// - число,
+                        case 'N':// - С‡РёСЃР»Рѕ,
                             if ($_property[$f]["MULTIPLE"] == 'N') {
                                 $value = floatval($value);
                             } else {
@@ -794,13 +794,13 @@ class Feedbackform extends CBitrixComponent
                                 }, $value);
                             }
                             break;
-                        case 'F':// - файл,
+                        case 'F':// - С„Р°Р№Р»,
                             //its not possible, because $dataIBlock - is a POST array, its file id
                             //throw new Exception("{$f} is a file in IBLOCK {$IBLOCK_ID}");
                             //or intval -> get FileArray by id
                             $value = ["VALUE" => CFile::MakeFileArray(intval($value))];
                             break;
-                        case 'L':// - список,
+                        case 'L':// - СЃРїРёСЃРѕРє,
                             if ($_property[$f]['PROPERTY_TYPE']['MULTIPLE'] === 'N') {
                                 $value = ['VALUE' => $value];
                             } else {
@@ -811,7 +811,7 @@ class Feedbackform extends CBitrixComponent
                                 foreach ($value as $v) {
                                     $VALUES[$v] = ['VALUE' => $v
                                         /*'VALUE' => array(
-                                            'TYPE' => 'S:HTML', // или html
+                                            'TYPE' => 'S:HTML', // РёР»Рё html
                                             'TEXT' => $v,
                                         ),
                                         "DESCRIPTION" => $v*/
@@ -822,8 +822,8 @@ class Feedbackform extends CBitrixComponent
 
 
                             break;
-                        case 'E':// - привязка к элементам,
-                        case 'G':// - привязка к группам.
+                        case 'E':// - РїСЂРёРІСЏР·РєР° Рє СЌР»РµРјРµРЅС‚Р°Рј,
+                        case 'G':// - РїСЂРёРІСЏР·РєР° Рє РіСЂСѓРїРїР°Рј.
                         default:
                             //throw new Exception('Not Emplement');
                     }

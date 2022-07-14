@@ -1,16 +1,16 @@
 "use strict";
 
-if (typeof window.interlabs === "undefined") {
-    window.interlabs = {};
+if (typeof window.kit === "undefined") {
+    window.kit = {};
 }
-if (typeof window.interlabs.feedbackform === "undefined") {
-    window.interlabs.feedbackform = {};
+if (typeof window.kit.feedbackform === "undefined") {
+    window.kit.feedbackform = {};
 }
 $(document).ready(function () {
     /**
      * open dialog
      */
-    $('.interlabs-feedbackform__container__dialog').each(function () {
+    $('.kit-feedbackform__container__dialog').each(function () {
 
         var dialog = $(this);
 
@@ -18,21 +18,21 @@ $(document).ready(function () {
 
         var fields = form.data('validatefields');
 
-        dialog.find('.js-interlabs-feedbackform__dialog__close, .js-interlabs-feedbackform__dialog__cancel-button').on('click', function () {
-            window.interlabs.feedbackform.closeDialog(this);
+        dialog.find('.js-kit-feedbackform__dialog__close, .js-kit-feedbackform__dialog__cancel-button').on('click', function () {
+            window.kit.feedbackform.closeDialog(this);
         });
     });
 
-    window.interlabs.feedbackform.closeDialog = function (context) {
-        var container = $(context).parents('.interlabs-feedbackform__container:first');
-        var dialog = container.find('.interlabs-feedbackform__container__dialog:first');
+    window.kit.feedbackform.closeDialog = function (context) {
+        var container = $(context).parents('.kit-feedbackform__container:first');
+        var dialog = container.find('.kit-feedbackform__container__dialog:first');
         dialog.addClass('hidden');
     };
 
-    window.interlabs.feedbackform.closeSuccessDialog = function (context) {
-        var container = $(context).parents('.interlabs-feedbackform__container:first');
-        var dialogSuccsess = container.find('.interlabs-feedbackform__container-succsess:first');
-        var dialog = container.find('.interlabs-feedbackform__container__dialog:first');
+    window.kit.feedbackform.closeSuccessDialog = function (context) {
+        var container = $(context).parents('.kit-feedbackform__container:first');
+        var dialogSuccsess = container.find('.kit-feedbackform__container-succsess:first');
+        var dialog = container.find('.kit-feedbackform__container__dialog:first');
         dialogSuccsess.addClass('hidden');
         dialog.removeClass('hidden');
     };

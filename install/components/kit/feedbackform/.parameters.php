@@ -17,7 +17,7 @@ use Bitrix\Main\Loader,
 use Bitrix\Main\Config\Option;
 use Bitrix\Iblock\IblockFieldTable;
 
-$module_id = 'interlabs.feedbackform';
+$module_id = 'kit.feedbackform';
 
 if (!Loader::includeModule('iblock') || !Loader::includeModule($module_id)) {
     return;
@@ -48,7 +48,7 @@ if ((int)$arCurrentValues['IBLOCK_ID'] > 0) {
     /*
         array(26) { ["ID"]=> string(2) "37"
        ["IBLOCK_ID"]=> string(1) "7"
-       ["NAME"]=> string(14) "телефон"
+       ["NAME"]=> string(14) "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ"
        ["ACTIVE"]=> string(1) "Y"
        ["SORT"]=> string(3) "500"
        ["CODE"]=> string(5) "PHONE"
@@ -133,7 +133,7 @@ $arComponentParameters = array(
             "PARENT" => "BASE",
             "NAME" => GetMessage("SUBJECT"),
             "TYPE" => "STRING",
-            "DEFAULT" => Option::get($module_id, 'subject', 'Interlabs - form')
+            "DEFAULT" => Option::get($module_id, 'subject', 'Kit - form')
         ],
         "USE_CAPTCHA" => [//
             "PARENT" => "BASE",
@@ -145,7 +145,7 @@ $arComponentParameters = array(
             "PARENT" => "BASE",
             "NAME" => GetMessage("EVENT_TYPE"),
             'TYPE' => 'LIST',
-            "DEFAULT" => Option::get($module_id, 'EVENT_NAME', "INTERLABS_FEEDBACK"),
+            "DEFAULT" => Option::get($module_id, 'EVENT_NAME', "KIT_FEEDBACK"),
             "VALUES" => $arEventType,
             'REFRESH' => 'Y',
         ],
@@ -176,7 +176,7 @@ $arComponentParameters = array(
 
         'IBLOCK_FIELDS_USE' => array(
             'PARENT' => 'BASE',
-            'NAME' => GetMessage('IBLOCK_FIELDS_USE'),//'Свойства инфоблока на форме'
+            'NAME' => GetMessage('IBLOCK_FIELDS_USE'),//'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ'
             'TYPE' => 'LIST',
             'MULTIPLE' => 'Y',
             //'ADDITIONAL_VALUES' => 'Y',
@@ -186,7 +186,7 @@ $arComponentParameters = array(
 
         'IBLOCK_FIELD_EMAIL' => array(
             'PARENT' => 'BASE',
-            'NAME' => GetMessage('IBLOCK_FIELD_EMAIL'),//'Поле email',
+            'NAME' => GetMessage('IBLOCK_FIELD_EMAIL'),//'пїЅпїЅпїЅпїЅ email',
             'TYPE' => 'LIST',
             'ADDITIONAL_VALUES' => 'Y',
             'VALUES' => $arFields,
@@ -194,7 +194,7 @@ $arComponentParameters = array(
         ),
         'IBLOCK_FIELD_PHONE' => array(
             'PARENT' => 'BASE',
-            'NAME' => GetMessage('IBLOCK_FIELD_PHONE'),//'Поле телефон',
+            'NAME' => GetMessage('IBLOCK_FIELD_PHONE'),//'пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ',
             'TYPE' => 'LIST',
             'ADDITIONAL_VALUES' => 'Y',
             'VALUES' => $arFields,
